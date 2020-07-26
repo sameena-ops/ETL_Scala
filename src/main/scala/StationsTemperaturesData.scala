@@ -7,8 +7,10 @@ object StationsTemperaturesData extends App{
 
   val session = new SessionBuilder().sparkSession()
   // SparkSession.builder().master("local[*]").appName("Annual data").getOrCreate()
-  val tempsfile = "./src/data/2017.csv"
-  val stationsfile = "./src/data/ghcnd-stations.txt"
+  val tempsfile = args(0);
+  val stationsfile = args(1);
+ /* val tempsfile = "./src/data/2017.csv"
+  val stationsfile = "./src/data/ghcnd-stations.txt"*/
   session.sparkContext.setLogLevel("WARN")
 
   val df2017 = new ExtractTemperaturesWithSchema().extractTempsData(tempsfile, session)
