@@ -1,10 +1,9 @@
 import builder.SessionBuilder
 import extract.{ExtarctStationsWithSchema, ExtractTemperaturesWithSchema}
-import load.LoadDataToSQLServer
 import transform.GetStationsTemperatures
 
-object StationsTemperaturesData extends App{
-
+object ExtractTransformJob {
+  def main(args: Array[String]){
   val session = new SessionBuilder().sparkSession()
   // SparkSession.builder().master("local[*]").appName("Annual data").getOrCreate()
   val tempsfile = args(0);
@@ -23,7 +22,12 @@ object StationsTemperaturesData extends App{
   finaltable.count()
   finaltable.show()
 
-  new LoadDataToSQLServer().loadDataToDb(session, finaltable)
+  //new LoadDataToSQLServer().loadDataToDb(session, finaltable)
 
-  println("Temperatures Database has been loaded with the stationsTemperatures data")
+  println("successfully transformed the data")
+
+    session.close()
+
+
+}
 }

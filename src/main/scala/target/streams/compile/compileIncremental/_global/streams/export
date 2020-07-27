@@ -1,0 +1,1 @@
+scalac -bootclasspath /Users/sameenasyed/.sbt/boot/scala-2.12.10/lib/scala-library.jar -classpath /Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/target/scala-2.12/classes /Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala

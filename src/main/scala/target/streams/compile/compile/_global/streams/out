@@ -1,0 +1,28 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:1:8: not found: object builder[0m
+[0m[[0m[31merror[0m] [0m[0mimport builder.SessionBuilder[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:2:8: not found: object extract[0m
+[0m[[0m[31merror[0m] [0m[0mimport extract.{ExtarctStationsWithSchema, ExtractTemperaturesWithSchema}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:3:8: not found: object load[0m
+[0m[[0m[31merror[0m] [0m[0mimport load.LoadDataToSQLServer[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:4:8: not found: object transform[0m
+[0m[[0m[31merror[0m] [0m[0mimport transform.GetStationsTemperatures[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:8:21: not found: type SessionBuilder[0m
+[0m[[0m[31merror[0m] [0m[0m  val session = new SessionBuilder().sparkSession()[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:16:20: not found: type ExtractTemperaturesWithSchema[0m
+[0m[[0m[31merror[0m] [0m[0m  val df2017 = new ExtractTemperaturesWithSchema().extractTempsData(tempsfile, session)[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:20:17: not found: type ExtarctStationsWithSchema[0m
+[0m[[0m[31merror[0m] [0m[0m  val sdf = new ExtarctStationsWithSchema().extractStationsData(stationsfile, session)[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:22:24: not found: type GetStationsTemperatures[0m
+[0m[[0m[31merror[0m] [0m[0m  val finaltable = new GetStationsTemperatures().transformDataStationsTempData(session,df2017,sdf)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/sameenasyed/Desktop/vodqafreshgit/ETL_Scala/src/main/scala/StationsTemperaturesData.scala:26:7: not found: type LoadDataToSQLServer[0m
+[0m[[0m[31merror[0m] [0m[0m  new LoadDataToSQLServer().loadDataToDb(session, finaltable)[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m9 errors found[0m
