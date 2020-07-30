@@ -19,7 +19,7 @@ class ValidateNoDuplicateStationEntries extends AnyFunSuite with BeforeAndAfter{
     val count =df.select("sid").distinct().count()
     val count2 = df.select("sid").count()
     //val count =session.sql("""select * from stationData where sid="ABC"""").toDF().count()
-    assert(count != count2)
+    assert(count == count2)
 
   }
 
