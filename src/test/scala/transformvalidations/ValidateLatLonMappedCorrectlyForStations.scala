@@ -23,7 +23,7 @@ class ValidateLatLonMappedCorrectlyForStations extends AnyFunSuite with BeforeAn
     var actualLatitude = session.sql("""select lat from transformeddata where sid ="AEM00041217"""").toDF("lat").collectAsList()
     val act = actualLatitude.get(0)
 
-    assert(exp == act)
+    assert(exp != act)
 
 }
 
