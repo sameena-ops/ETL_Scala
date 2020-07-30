@@ -1,4 +1,4 @@
-package it
+package transformvalidations
 
 import builder.SessionBuilder
 import extract.{ExtarctStationsWithSchema, ExtractTemperaturesWithSchema}
@@ -7,17 +7,12 @@ import org.scalatest.funsuite.AnyFunSuite
 import transform.GetStationsTemperatures
 
 class ValidateLatLonMappedCorrectlyForStations extends AnyFunSuite with BeforeAndAfter {
-/*  val stationsData = "/Users/sameenasyed/Documents/jenkins_volume/data/ghcnd-stations.txt"
-  val stationsTemperatures = "/Users/sameenasyed/Documents/jenkins_volume/data/2107.csv"*/
 
   test("throw an exception if there is any mismatch in the station details in the transformed data"){
 
     val session = new SessionBuilder().sparkSession()
     val tempsfile = "./src/testdata/temperatures.csv";
     val stationsfile = "./src/testdata/dummy.txt";
-
-
-
     val df2017 = new ExtractTemperaturesWithSchema().extractTempsData(tempsfile, session)
     val sdf = new ExtarctStationsWithSchema().extractStationsData(stationsfile, session)
     val finaltable = new GetStationsTemperatures().transformDataStationsTempData(session,df2017,sdf)
@@ -31,4 +26,22 @@ class ValidateLatLonMappedCorrectlyForStations extends AnyFunSuite with BeforeAn
     assert(exp == act)
 
 }
+
+  test("validates the transformed data from stationsfile to transformed data"){
+    val session = new SessionBuilder().sparkSession()
+    val tempsfile = "./src/testdata/temperatures.csv";
+    val stationsfile = "./src/testdata/dummy.txt";
+    val df2017 = new ExtractTemperaturesWithSchema().extractTempsData(tempsfile, session)
+    val sdf = new ExtarctStationsWithSchema().extractStationsData(stationsfile, session)
+    val finaltable = new GetStationsTemperatures().transformDataStationsTempData(session,df2017,sdf)
+    finaltable.show()
+    sdf.show()
+    sdf.createOrReplaceTempView("stationsdata")
+    finaltable.createOrReplaceTempView("transformeddata")
+    val latitudeDataFrame = session.sql(
+      """select stationsdata.lat as latexp,transformeddata.lat as latact from stationsdata,
+        |transformeddata where stationsdata.sid = transformeddata.sid""".stripMargin)
+    latitudeDataFrame.show()
+   assert(latitudeDataFrame.select("latexp").collectAsList()==latitudeDataFrame.select("latact").collectAsList())
+  }
 }

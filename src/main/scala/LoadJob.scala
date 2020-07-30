@@ -1,8 +1,8 @@
 import builder.SessionBuilder
-import extract.{ExtarctStationsWithSchema, ExtractTemperaturesWithSchema}
 import load.LoadDataToSQLServer
 import transform.GetStationsTemperatures
-
+import extract.ExtarctStationsWithSchema
+import extract.ExtractTemperaturesWithSchema
 object LoadJob {
     def main(args: Array[String]){
         val session = new SessionBuilder().sparkSession()

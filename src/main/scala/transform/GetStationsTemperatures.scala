@@ -4,8 +4,6 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 class GetStationsTemperatures {
   def transformDataStationsTempData(sparkSession: SparkSession, tempDataFrame: DataFrame,stationsDataFrame: DataFrame): DataFrame = {
-    //df2017.createOrReplaceTempView("tempdata2017")
-    // df.createOrReplaceTempView("praveen")
     tempDataFrame.createOrReplaceTempView("tempdata2017")
     val sqltemp = sparkSession.sql(
       """ select sid,date,(tmax+tmin)/20*1.8+32 as tavg from
@@ -19,8 +17,9 @@ class GetStationsTemperatures {
 
     sqlstntempdata.createOrReplaceTempView("avgtempperstn")
     stationsDataFrame.createOrReplaceTempView("stndataframe")
-    val finaltable = sparkSession.sql(
-      """select sid,lat,lon,name,tavg from (select * from stndataframe limit 1000) join (select * from avgtempperstn limit 1000) using (sid)""")
+    val finaltable = sparkSession.sql("""select sid,lat,lon,name,tavg from (select * from stndataframe limit 1000) join
+        |(select * from avgtempperstn limit 1000) using (sid)""".stripMargin)
+    finaltable.show()
     return finaltable
   }
 }

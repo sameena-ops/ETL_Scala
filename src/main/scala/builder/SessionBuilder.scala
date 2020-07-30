@@ -1,5 +1,6 @@
 package builder
 import org.apache.spark.sql.SparkSession
+
 class SessionBuilder {
 
   def sparkSession(): SparkSession ={
