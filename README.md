@@ -1,8 +1,11 @@
 # ETL_Scala
 
-#Installations Required
+Installations Required
+
 Scala SDK
+
 Spark
+
 SBT
 
 
